@@ -63,13 +63,13 @@ const AddButton = () => {
             // setNotes((prevState) => {
             //     // Ensure the response is not undefined or incorrect
             //     if (response && response.id) {
-            //         return [response, ...prevState]
+            //         return [ ...prevState, response]
             //     } else {
             //         console.error('Failed to create a new note', response)
             //         return prevState;
             //     }
             // });
-            setNotes((prevState) => [response, ...prevState]);
+            setNotes((prevState) => [...prevState, response]);
         } catch (error) {
             console.error('Error adding note:', error);
         }
