@@ -54,6 +54,7 @@ const AddButton = () => {
                     y: startingPos.current,
                 }),
                 colors: JSON.stringify(colors[0]),
+                createdAt:new Date()
             };
 
             startingPos.current += 10;

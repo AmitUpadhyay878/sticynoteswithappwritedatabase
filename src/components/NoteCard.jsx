@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useContext } from 'react'
 import { setNewOffset, autoGrow, setZIndex, bodyParser } from '../utils'
-import { OrgGetFullDate } from '../functions/datetimefuncs'
+import { fortebleDatetime, OrgGetFullDate } from '../functions/datetimefuncs'
 import { db } from '../appwrite/datbases'
 import Spinner from '../icons/Spinner'
 import DeleteButton from '../components/DeleteButton'
@@ -27,7 +27,7 @@ const NoteCard = ({ note,setNotes }) => {
     }, [])
 
     const { setSelectedNote } = useContext(NoteContext);
-
+   
     const mouseDown = (e) => {
         if (e.target.className === "card-header") {
 
@@ -107,11 +107,14 @@ const NoteCard = ({ note,setNotes }) => {
                 style={{ backgroundColor: colors.colorHeader }}
                 onMouseDown={mouseDown}
             >
-                {/* <Trash /> */}
+
+                <span>
+                    {/* {OrgGetFullDate(note?.createdAt)} */}
+                    {fortebleDatetime(note?.createdAt)}
+                </span>
                 <DeleteButton noteId={note.$id} 
                 // setNotes={setNotes}
                  />
-
                 {saving && (
                     <div className="card-saving">
                         <Spinner color={colors.colorText} />
@@ -120,21 +123,10 @@ const NoteCard = ({ note,setNotes }) => {
                         </span>
                     </div>
                 )}
-
-                <p
-                    style={{
-                        color: 'black',
-                        fontWeight: 600,
-                        alignItems: 'center',
-                        justifyContent: 'space-evenly'
-                    }}
-                >
-                </p>
             </div>
             <div className="card-body">
                 <textarea
                     ref={textAreaRef}
-                   
                     style={{ color: colors.colorText }}
                     defaultValue={body}
                     onKeyUp={handleKeyUp}

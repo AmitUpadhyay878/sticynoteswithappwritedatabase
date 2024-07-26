@@ -43,3 +43,25 @@ export const OrgGetFullDate = (data) => {
   
   return formattedDate;
 };
+
+
+
+
+
+
+export const fortebleDatetime=(newdate)=>{
+  const date = new Date(newdate);
+  const options = { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric', 
+    hour: '2-digit', 
+    minute: '2-digit', 
+    second: '2-digit', 
+    timeZoneName: 'short' 
+  };
+  
+  const readableDate = date.toLocaleDateString('en-US', options);
+
+  return readableDate
+}
